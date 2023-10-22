@@ -6,6 +6,8 @@ import compression from "compression";
 import cors from "cors";
 import mongoose from "mongoose";
 
+import router from "./router";
+
 const app = express();
 
 app.use(
@@ -19,7 +21,7 @@ app.use(bodyParser.json());
 
 const server = http.createServer(app);
 server.listen(8080, () => {
-  console.log("Server listening on http://localhost:8080");
+  console.log("Server listening on http://localhost:8080/");
 });
 
 const MONGO_URL =
@@ -28,3 +30,5 @@ const MONGO_URL =
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URL);
 mongoose.connection.on("error", (error: Error) => console.log(error));
+
+app.use("/", router());
