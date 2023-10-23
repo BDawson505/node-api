@@ -47,7 +47,7 @@ export const isOwner = async (
       return res.sendStatus(403);
     }
 
-    next();
+    return next();
   } catch (error) {
     console.log(error);
     return res.sendStatus(400);
